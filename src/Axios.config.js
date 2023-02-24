@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const Axios = axios.create({
-  baseURL: "https://chatbackend-production-c208.up.railway.app/",
+  baseURL: "https://chatbackend-production-c208.up.railway.app/api",//"http://localhost:8080/api",
 });
 
 // Add a request interceptor
