@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import Dashboard from "../pages/dashboard/Dashboard";
@@ -12,7 +12,7 @@ function CustomeRoutes() {
   const auth = useAuth();
   return (
     <>
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           {/* PUBLIC ROUTE */}
           <Route element={<PublicRoute auth={auth} />}>
@@ -26,7 +26,7 @@ function CustomeRoutes() {
           {/* INVALID */}
           <Route path="*" element={<PageNotFound />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </>
   );
 }
