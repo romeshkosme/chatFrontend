@@ -12,7 +12,7 @@ import { useAuth } from "../hooks/useAuth";
 const ENDPOINT = import.meta.env.VITE_ENDPOINT;
 let socket, selectedChatCompare;
 
-function Chat({chatId, chatName}) {
+function Chat({ chatId, chatName }) {
   const { user } = useAuth();
   const [msg, setMsg] = useState("");
   const [messages, setMessages] = useState([]);
@@ -60,15 +60,15 @@ function Chat({chatId, chatName}) {
     }
   };
   return (
-    <div className="bg-white sm:w-[750px] h-[90vh] max-w-[950px] rounded-md p-4 flex flex-col">
+    <div className="bg-[#457B9D] sm:w-[750px] h-[90vh] max-w-[950px] rounded-md p-4 flex flex-col">
       {/* header */}
       {chatId ? (
         <>
           <div className="flex items-center gap-x-2 mb-3">
             <img src={avatar} className="w-[65px]" />
             <div>
-              <h2 className="font-[500]">{chatName}</h2>
-              <span className="text-gray-400 text-sm">
+              <h2 className="font-[500] text-[#f1faee]">{chatName}</h2>
+              <span className="text-[#a8dadc] text-sm">
                 Online | Last seen, 2:02pm
               </span>
             </div>
@@ -89,92 +89,31 @@ function Chat({chatId, chatName}) {
                     <span
                       className={`${
                         message.sender._id === user._id
-                          ? "bg-[#6E00FF] text-white"
-                          : "bg-[#E7E7E7]"
+                          ? "bg-[#1d3557] text-[#f1faee]"
+                          : "bg-[#a8dadc] text-[#1d3557]"
                       }  w-max px-3 py-2 rounded-lg`}
                     >
                       {message.content}
                     </span>
                   </div>
                 ))}
-              {/* <div className="mt-2 flex flex-col">
-            <span className="bg-[#E7E7E7] w-max px-3 py-2 rounded-lg">
-              How are you?
-            </span>
-            <span className="text-sm text-gray-400">Today, 8.02am</span>
-          </div>
-          <div className="mt-2 ml-auto">
-            <span className="bg-[#6E00FF] text-white w-max px-3 py-2 rounded-lg">
-              Hey there!
-            </span>
-          </div>
-          <div className="mt-2 ml-auto flex flex-col">
-            <span className="bg-[#6E00FF] text-white w-max px-3 py-2 rounded-lg">
-              How are you?
-            </span>
-            <span className="text-sm text-gray-400">Today, 8.02am</span>
-          </div>
-          <div className="mt-2">
-            <span className="bg-[#E7E7E7] w-max px-3 py-2 rounded-lg">
-              Hey there!
-            </span>
-          </div>
-          <div className="mt-2 flex flex-col">
-            <span className="bg-[#E7E7E7] w-max px-3 py-2 rounded-lg">
-              How are you?
-            </span>
-            <span className="text-sm text-gray-400">Today, 8.02am</span>
-          </div>
-          <div className="mt-2 ml-auto">
-            <span className="bg-[#6E00FF] text-white w-max px-3 py-2 rounded-lg">
-              Hey there!
-            </span>
-          </div>
-          <div className="mt-2 ml-auto flex flex-col">
-            <span className="bg-[#6E00FF] text-white w-max px-3 py-2 rounded-lg">
-              How are you?
-            </span>
-            <span className="text-sm text-gray-400">Today, 8.02am</span>
-          </div>
-          <div className="mt-2">
-            <span className="bg-[#E7E7E7] w-max px-3 py-2 rounded-lg">
-              Hey there!
-            </span>
-          </div>
-          <div className="mt-2 flex flex-col">
-            <span className="bg-[#E7E7E7] w-max px-3 py-2 rounded-lg">
-              How are you?
-            </span>
-            <span className="text-sm text-gray-400">Today, 8.02am</span>
-          </div>
-          <div className="mt-2 ml-auto">
-            <span className="bg-[#6E00FF] text-white w-max px-3 py-2 rounded-lg">
-              Hey there!
-            </span>
-          </div>
-          <div className="mt-2 ml-auto flex flex-col">
-            <span className="bg-[#6E00FF] text-white w-max px-3 py-2 rounded-lg">
-              How are you?
-            </span>
-            <span className="text-sm text-gray-400">Today, 8.02am</span>
-          </div> */}
             </div>
           </div>
           {/* typing area */}
           <div className="mt-4 flex gap-x-2">
             {/* input */}
-            <div className="bg-[#EFF6FC] rounded-md flex justify-around p-2 w-full">
+            <div className="bg-[#f1faee] rounded-md flex justify-around p-2 w-full">
               <img src={attachmentIcon} className="h-[28px]" />
               <input
                 placeholder="Type your message here..."
-                className="bg-transparent focus:outline-none ml-3 flex-[0.9]"
+                className="bg-transparent focus:outline-none ml-3 flex-[0.9] placeholder:text-[#457b9d] text-[#1d3557]"
                 value={msg}
                 onChange={(e) => setMsg(e.target.value)}
               />
               <img src={smileyIcon} className="h-[28px]" />
               <img src={cameraIcon} className="h-[28px] ml-2" />
             </div>
-            <div className="bg-[#6E00FF] rounded-md h-[46px] w-[46px] flex justify-center items-center cursor-pointer">
+            <div className="bg-[#1d3557] rounded-md h-[46px] w-[46px] flex justify-center items-center cursor-pointer">
               <img
                 src={sendIcon}
                 className="h-[28px]"
@@ -186,8 +125,8 @@ function Chat({chatId, chatName}) {
       ) : (
         <>
           <div className="h-full w-full flex flex-col justify-center items-center">
-            <h3 className="text-3xl font-[500]">Welcome</h3>
-            <p className="text-gray-400">Select the user to chat</p>
+            <h3 className="text-[#F1FAEE] text-3xl font-[400]">Welcome</h3>
+            <p className="text-[#A8DADC]">Select the user to chat</p>
           </div>
         </>
       )}

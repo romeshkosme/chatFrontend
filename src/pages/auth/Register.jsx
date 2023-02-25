@@ -20,9 +20,7 @@ function Register() {
           navigate("/dashboard");
         })
         .catch((error) => {
-          setError(
-            error.message
-          );
+          setError(error.message);
         })
         .finally(() => {
           setLoader(false);
@@ -39,19 +37,19 @@ function Register() {
     }
   }, [username, password]);
   return (
-    <div className="bg-[#EFF6FC] h-[100vh] flex justify-center items-center">
+    <div className="bg-[#a8dadc] h-[100vh] flex justify-center items-center">
       {/* card */}
-      <div className="bg-[#ffffff] w-[420px] max-w-[450px] max-h-[430px] border-2 border-[#6E00FF] rounded-[5px] py-[24px] px-[20px]">
-        <p className="text-center font-[500] text-gray-400">WELCOME</p>
-        <h1 className="text-center font-[600] text-xl text-[#6E00FF]">
+      <div className="bg-[#f1faee] w-[420px] max-w-[450px] max-h-[430px] rounded-[5px] py-[24px] px-[20px]">
+        <p className="text-center font-[500] text-[#457b9d]">WELCOME</p>
+        <h1 className="text-center font-[600] text-xl text-[#1d3557]">
           Register
         </h1>
         {/* form */}
         <div className="flex flex-col mt-4">
-          <label className="text-gray-500">Username</label>
+          <label className="text-[#457b9d]">Username</label>
           <input
             type="text"
-            className="bg-[#EFF6FC] text-gray-500 rounded-[4px] px-2 py-1 placeholder:text-gray-500 focus:outline-none"
+            className="bg-transparent border-2 border-[#457b9d] text-[#1d3557] rounded-[4px] px-2 py-1 placeholder:text-[#457b9d] focus:outline-none"
             placeholder="Enter your username"
             value={username}
             onChange={(e) => {
@@ -60,10 +58,10 @@ function Register() {
           />
         </div>
         <div className="flex flex-col mt-2">
-          <label className="text-[#1d3557]">Password</label>
+          <label className="text-[#457b9d]">Password</label>
           <input
             type="password"
-            className="bg-[#EFF6FC] text-gray-500 rounded-[4px] px-2 py-1 placeholder:text-gray-500 focus:outline-none"
+            className="bg-transparent border-2 border-[#457b9d] text-[#1d3557] rounded-[4px] px-2 py-1 placeholder:text-[#457b9d] focus:outline-none"
             placeholder="Enter your password"
             value={password}
             onChange={(e) => {
@@ -76,7 +74,7 @@ function Register() {
           <LoaderButton loading={loader} />
         ) : (
           <button
-            className="font-[500] w-full bg-[#6E00FF] text-white px-2 py-1 rounded-[4px] mt-4"
+            className="font-[500] w-full bg-[#1d3557] text-white px-2 py-1 rounded-[4px] mt-4"
             onClick={onSubmitHandle}
           >
             Register
@@ -85,7 +83,7 @@ function Register() {
         <p className="mt-2 text-gray-500">
           Not registered?{" "}
           <Link to={"/"}>
-            <span className="font-[500] text-[#6E00FF] cursor-pointer">
+            <span className="font-[500] text-[#1d3557] cursor-pointer">
               Login
             </span>
           </Link>

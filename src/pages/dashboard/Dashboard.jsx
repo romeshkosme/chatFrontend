@@ -11,17 +11,17 @@ function Dashboard() {
   const auth = useAuth();
   return (
     <>
-      <div className="bg-[#EFF6FC] h-[100vh] flex justify-center items-center">
+      <div className="bg-[#a8dadc] h-[100vh] flex justify-center items-center">
         <div className="flex gap-x-4">
           {/* menu */}
-          <div className="bg-[#6E00FF] max-w-[133px] h-[90vh] rounded-md flex flex-col justify-between p-4">
+          {/* <div className="bg-[#6E00FF] max-w-[133px] h-[90vh] rounded-md flex flex-col justify-between p-4">
             <img src={avatar} className="h-[64px]" />
             <img
               src={logoutImg}
               className="cursor-pointer"
               onClick={() => auth.signout()}
             />
-          </div>
+          </div> */}
           {/* search group people */}
           <SearchPeople setChatId={setChatId} setChatName={setChatName} />
           {/* chat */}
