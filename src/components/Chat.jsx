@@ -17,7 +17,6 @@ function Chat(props) {
   const [msg, setMsg] = useState("");
   const [messages, setMessages] = useState([]);
   const [socketConnected, setSocketConnected] = useState(false);
-  console.log("chat component VITE_ENDPOINT - ", import.meta.env.VITE_ENDPOINT)
   useEffect(() => {
     if (user) {
       socket = io(ENDPOINT);
