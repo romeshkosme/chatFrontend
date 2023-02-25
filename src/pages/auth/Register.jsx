@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LoaderButton from "../../components/LoaderButton";
 import { useAuth } from "../../hooks/useAuth";
@@ -7,6 +7,7 @@ function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loader, setLoader] = useState(false);
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
   const auth = useAuth();
   const onSubmitHandle = (e) => {
@@ -19,16 +20,24 @@ function Register() {
           navigate("/dashboard");
         })
         .catch((error) => {
-          console.log(error);
+          setError(
+            error.message
+          );
         })
         .finally(() => {
-          console.log("finally");
           setLoader(false);
         });
     } else {
-      console.log("small ");
+      setError(
+        "Username must be of length greater than 5 and password greater than 7."
+      );
     }
   };
+  useEffect(() => {
+    if (username && username.length > 5 && password && password.length > 7) {
+      setError("");
+    }
+  }, [username, password]);
   return (
     <div className="bg-[#EFF6FC] h-[100vh] flex justify-center items-center">
       {/* card */}
@@ -62,6 +71,7 @@ function Register() {
             }}
           />
         </div>
+        {error && <p className="text-sm text-red-500 mt-2">{error}</p>}
         {loader ? (
           <LoaderButton loading={loader} />
         ) : (
