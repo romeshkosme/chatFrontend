@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import LoaderButton from "../../components/LoaderButton";
 import { useAuth } from "../../hooks/useAuth";
 
 function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loader, setLoader] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const auth = useAuth();
   const onSubmitHandle = (e) => {
     e.preventDefault();
@@ -15,7 +16,7 @@ function Register() {
       auth
         .signup({ username, password })
         .then((response) => {
-          navigate('/dashboard')
+          navigate("/dashboard");
         })
         .catch((error) => {
           console.log(error);
@@ -61,12 +62,16 @@ function Register() {
             }}
           />
         </div>
-        <button
-          className="font-[500] w-full bg-[#6E00FF] text-white px-2 py-1 rounded-[4px] mt-4"
-          onClick={onSubmitHandle}
-        >
-          Register
-        </button>
+        {loader ? (
+          <LoaderButton loading={loader} />
+        ) : (
+          <button
+            className="font-[500] w-full bg-[#6E00FF] text-white px-2 py-1 rounded-[4px] mt-4"
+            onClick={onSubmitHandle}
+          >
+            Register
+          </button>
+        )}
         <p className="mt-2 text-gray-500">
           Not registered?{" "}
           <Link to={"/"}>

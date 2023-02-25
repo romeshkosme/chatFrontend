@@ -7,6 +7,7 @@ import { useAuth } from "../../hooks/useAuth";
 
 function Dashboard() {
   const [chatId, setChatId] = useState("");
+  const [chatName, setChatName] = useState("");
   const auth = useAuth();
   return (
     <>
@@ -22,9 +23,9 @@ function Dashboard() {
             />
           </div>
           {/* search group people */}
-          <SearchPeople setChatId={setChatId} />
+          <SearchPeople setChatId={setChatId} setChatName={setChatName} />
           {/* chat */}
-          <Chat chatId={chatId} />
+          <Chat chatId={chatId} chatName={chatName} />
         </div>
       </div>
     </>

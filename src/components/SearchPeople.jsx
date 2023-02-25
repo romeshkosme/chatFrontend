@@ -13,21 +13,27 @@ function SearchPeople(props) {
   const [chats, setChats] = useState([]);
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
-  useEffect(() => {
-    getAllChat().then((response) => {
-      setChats(response);
-    });
-  }, []);
+  // useEffect(() => {
+  //   fetchAllChats();
+  // }, []);
   useEffect(() => {
     const getData = setTimeout(() => {
-      if (search && search.length > 5) {
+      if (search && search.length > 4) {
         searchUser(search).then((response) => {
           setSearchResult(response.users);
         });
+      } else if (!search || search.length === 0) {
+        setSearchResult([]);
+        fetchAllChats();
       }
     }, 800);
     return () => clearTimeout(getData);
   }, [search]);
+  const fetchAllChats = () => {
+    getAllChat().then((response) => {
+      setChats(response);
+    });
+  };
   const handleCreateChat = (userId) => {
     createGet({ userId }).then((response) => {
       props.setChatId(response._id);
@@ -87,7 +93,10 @@ function SearchPeople(props) {
                 !chat.isGroupChat && (
                   <div
                     className="flex gap-x-3 cursor-pointer border-t border-gray-200 py-2 px-2 hover:bg-gray-100"
-                    onClick={() => props.setChatId(chat._id)}
+                    onClick={() => {
+                      props.setChatId(chat._id);
+                      props.setChatName(getSender(user._id, chat.users));
+                    }}
                     key={chat._id}
                   >
                     <img src={avatar} className="h-[50px]" />

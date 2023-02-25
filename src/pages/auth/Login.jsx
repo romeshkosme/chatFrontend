@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import LoaderButton from "../../components/LoaderButton";
 import { useAuth } from "../../hooks/useAuth";
 
 function Login() {
@@ -61,12 +62,16 @@ function Login() {
               }}
             />
           </div>
-          <button
-            onClick={onSubmitHandle}
-            className="font-[500] w-full bg-[#6E00FF] text-white px-2 py-1 rounded-[4px] mt-4"
-          >
-            Login
-          </button>
+          {loader ? (
+            <LoaderButton loading={loader} />
+          ) : (
+            <button
+              onClick={onSubmitHandle}
+              className="font-[500] w-full bg-[#6E00FF] text-white px-2 py-1 rounded-[4px] mt-4"
+            >
+              Login
+            </button>
+          )}
           <p className="mt-2 text-gray-500">
             Not registered?{" "}
             <Link to={"/register"}>

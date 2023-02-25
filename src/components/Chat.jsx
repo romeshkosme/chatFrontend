@@ -9,10 +9,10 @@ import { getAllMessages, sendMessage } from "../api/message.api";
 import io from "socket.io-client";
 import { useAuth } from "../hooks/useAuth";
 
-const ENDPOINT = import.meta.env.VITE_ENDPOINT
+const ENDPOINT = import.meta.env.VITE_ENDPOINT;
 let socket, selectedChatCompare;
 
-function Chat(props) {
+function Chat({chatId, chatName}) {
   const { user } = useAuth();
   const [msg, setMsg] = useState("");
   const [messages, setMessages] = useState([]);
@@ -25,20 +25,20 @@ function Chat(props) {
     }
   }, [user]);
   useEffect(() => {
-    if (props.chatId) {
-      getAllMessages(props.chatId).then((response) => {
+    if (chatId) {
+      getAllMessages(chatId).then((response) => {
         setMessages(response);
-        socket.emit("join chat", props.chatId);
+        socket.emit("join chat", chatId);
       });
-      selectedChatCompare = props.chatId;
+      selectedChatCompare = chatId;
     } else {
       // getAllMessages().then((response) => {
       //   setMessages(response);
-      //   socket.emit("join chat", props.chatId);
+      //   socket.emit("join chat", chatId);
       // });
-      // selectedChatCompare = props.chatId;
+      // selectedChatCompare = chatId;
     }
-  }, [props.chatId]);
+  }, [chatId]);
   useEffect(() => {
     if (socket) {
       socket.on("message recieved", (newMsg) => {
@@ -51,9 +51,9 @@ function Chat(props) {
   });
   const handleSubmitMessage = (e) => {
     e.preventDefault();
-    if (msg && props.chatId) {
+    if (msg && chatId) {
       setMsg("");
-      sendMessage({ content: msg, chatId: props.chatId }).then((response) => {
+      sendMessage({ content: msg, chatId: chatId }).then((response) => {
         socket.emit("new message", response);
         setMessages([...messages, response]);
       });
@@ -62,12 +62,12 @@ function Chat(props) {
   return (
     <div className="bg-white sm:w-[750px] h-[90vh] max-w-[950px] rounded-md p-4 flex flex-col">
       {/* header */}
-      {props.chatId ? (
+      {chatId ? (
         <>
           <div className="flex items-center gap-x-2 mb-3">
             <img src={avatar} className="w-[65px]" />
             <div>
-              <h2 className="font-[500]">Sameer</h2>
+              <h2 className="font-[500]">{chatName}</h2>
               <span className="text-gray-400 text-sm">
                 Online | Last seen, 2:02pm
               </span>
