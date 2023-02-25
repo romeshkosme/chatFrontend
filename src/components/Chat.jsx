@@ -17,6 +17,7 @@ function Chat(props) {
   const [msg, setMsg] = useState("");
   const [messages, setMessages] = useState([]);
   const [socketConnected, setSocketConnected] = useState(false);
+  console.log("chat component VITE_ENDPOINT - ", import.meta.env.VITE_ENDPOINT)
   useEffect(() => {
     if (user) {
       socket = io(ENDPOINT);
@@ -32,11 +33,11 @@ function Chat(props) {
       });
       selectedChatCompare = props.chatId;
     } else {
-      getAllMessages().then((response) => {
-        setMessages(response);
-        socket.emit("join chat", props.chatId);
-      });
-      selectedChatCompare = props.chatId;
+      // getAllMessages().then((response) => {
+      //   setMessages(response);
+      //   socket.emit("join chat", props.chatId);
+      // });
+      // selectedChatCompare = props.chatId;
     }
   }, [props.chatId]);
   useEffect(() => {
