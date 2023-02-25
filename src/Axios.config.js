@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const Axios = axios.create({
-  baseURL: "https://chat-backend-9sx1.onrender.com/api/",//"http://localhost:8080/api",
+  baseURL: import.meta.env.VITE_BASE_URL,
 });
 
 // Add a request interceptor

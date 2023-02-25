@@ -9,7 +9,7 @@ import { getAllMessages, sendMessage } from "../api/message.api";
 import io from "socket.io-client";
 import { useAuth } from "../hooks/useAuth";
 
-const ENDPOINT = "http://localhost:8080";
+const ENDPOINT = import.meta.env.VITE_ENDPOINT
 let socket, selectedChatCompare;
 
 function Chat(props) {
@@ -27,15 +27,12 @@ function Chat(props) {
   useEffect(() => {
     if (props.chatId) {
       getAllMessages(props.chatId).then((response) => {
-        console.log("get all msgs or create new chat - ", response)
         setMessages(response);
         socket.emit("join chat", props.chatId);
       });
       selectedChatCompare = props.chatId;
     } else {
-      console.log("create new chat")
       getAllMessages().then((response) => {
-        console.log("get all msgs or create new chat - ", response)
         setMessages(response);
         socket.emit("join chat", props.chatId);
       });
