@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from 'react-dom/client'
+import ReactDOM from "react-dom/client";
 
 const MODAL_STYLE = {
   position: "fixed",
@@ -20,15 +20,14 @@ const OVERLAY_STYLE = {
   zIndex: 1000,
 };
 
-function Modal({ open }) {
+function Modal({ open, children }) {
   if (!open) return null;
   return ReactDOM.createPortal(
     <div style={OVERLAY_STYLE}>
-      <div style={MODAL_STYLE}>Modal</div>
+      <div style={MODAL_STYLE}>{children}</div>
     </div>,
     document.getElementById("modal-portal")
   );
 }
 
 export default Modal;
- 
